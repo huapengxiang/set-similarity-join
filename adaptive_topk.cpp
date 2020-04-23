@@ -16,7 +16,7 @@ void adaptive_topk(const vector<vector<long>> &records,int k,int step=1 )
 	init_events(records);
 	init_results(records, k);
 
-	//int step = 8;
+
 
 	long candidate = 0;
 	while (!events.empty())
@@ -33,15 +33,9 @@ void adaptive_topk(const vector<vector<long>> &records,int k,int step=1 )
 		{
 			break;
 		}
-		/**
-		if (step < tub - sk)
-		{
-			step += 1;
-		}
-		else {
-			step = tub - sk;
-		}
-		/**/
+
+		step = tub - sk;
+		
 		for (int s = 0; s < step; s++)
 		{
 			long spx = similarity_upper_bound_probe(records,x,px+s);
@@ -100,10 +94,10 @@ void adaptive_topk(const vector<vector<long>> &records,int k,int step=1 )
 	auto end = system_clock::now();
 	auto elapsed = duration_cast<microseconds>(end - start);
 	long elapsed_time = long(elapsed.count());
-	cout << "elapsed£º";
-	cout << elapsed_time << "Î¢Ãë" << endl;
-	cout << "verify time£º";
-	cout << v_time << "Î¢Ãë" << endl;
+	cout << "elapsedÂ£Âº";
+	cout << elapsed_time << "ÃŽÂ¢ÃƒÃ«" << endl;
+	cout << "verify timeÂ£Âº";
+	cout << v_time << "ÃŽÂ¢ÃƒÃ«" << endl;
 
 	long inverted_list_size = 0;
 	for (auto e :inverted_list)
